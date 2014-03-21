@@ -1,4 +1,6 @@
-load('vertx.js')
+var vertx = require('vertx')
+var container = require('vertx/container');
+
 
 var ip = container.env['OPENSHIFT_VERTX_IP'] || '127.0.0.1';
 var port = parseInt(container.env['OPENSHIFT_VERTX_PORT'] || 8080);
