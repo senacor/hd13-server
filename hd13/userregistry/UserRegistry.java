@@ -26,13 +26,12 @@ public class UserRegistry extends Verticle {
         System.out.println("port = " + port);
         System.out.println("host = " + host);
 
-        JsonObject config = new JsonObject("{" +
-                // "'address': 'test.my_persistor', " +
-                "\"host\": \""+host+"\","+
-                "\"port\": "+port+","+
-                "\"pool_size\": 20, "+
-                "\"db_name\": \"server\""+
-                "}");
+        JsonObject config = new JsonObject();
+        config.putString("host", host)
+                .putString("port", port)
+                .putString("db_name", "server")
+                .putString("username", "admin")
+                .putString("password", "1Nq6LrahSJds");
 
         container.deployModule("io.vertx~mod-mongo-persistor~2.1.0", config);
 
