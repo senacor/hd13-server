@@ -33,7 +33,7 @@ public class EventLogger extends Verticle {
         System.out.println("username = " + username);
         System.out.println("password = " + password);
 
-        host = host == null ? "localhost" : host;
+        host = host == null ? "192.168.1.137" : host;
         port = port == null ? "27017" : port;
 
         JsonObject config = new JsonObject();
