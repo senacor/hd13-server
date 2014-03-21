@@ -24,16 +24,24 @@ public class EventLogger extends Verticle {
 
         String host = container.env().get("OPENSHIFT_MONGODB_DB_HOST");
         String port = container.env().get("OPENSHIFT_MONGODB_DB_PORT");
+        String username = container.env().get("OPENSHIFT_MONGODB_DB_USERNAME");
+        String password = container.env().get("OPENSHIFT_MONGODB_DB_PASSWORD");
+
 
         System.out.println("port = " + port);
         System.out.println("host = " + host);
+        System.out.println("username = " + username);
+        System.out.println("password = " + password);
+
+        host = host == null ? "localhost" : host;
+        port = port == null ? "27017" : port;
 
         JsonObject config = new JsonObject();
         config.putString("host", host)
                 .putNumber("port", Long.valueOf(port))
                 .putString("db_name", "server")
-                .putString("username", "admin")
-                .putString("password", "1Nq6LrahSJds");
+                .putString("username", username)
+                .putString("password", password);
 
         container.deployModule("io.vertx~mod-mongo-persistor~2.1.0", config);
 
