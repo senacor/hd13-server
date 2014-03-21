@@ -1,4 +1,4 @@
-var vertx = require('vertx')
+var vertx = require('vertx');
 var container = require('vertx/container');
 var eventBus = vertx.eventBus;
 
@@ -25,4 +25,4 @@ vertx.createHttpServer().requestHandler(function(req) {
 
     var file = req.path() === '/' ? 'index.html' : req.path();
     req.response.sendFile('webroot/' + file);
-}).listen(port, ip)
+}).listen(port, ip);

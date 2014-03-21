@@ -20,8 +20,8 @@ public class UserRegistry extends Verticle {
     public void start() {
         System.out.println("starting UserRegistry ...");
 
-        String host = container.env().get("OPENSHIFT_MONGODB_DB_HOST");
-        String port = container.env().get("OPENSHIFT_MONGODB_DB_PORT");
+        String host = "localhost"; //container.env().get("OPENSHIFT_MONGODB_DB_HOST");
+        String port = "27017"; //container.env().get("OPENSHIFT_MONGODB_DB_PORT");
 
         System.out.println("port = " + port);
         System.out.println("host = " + host);
@@ -38,9 +38,16 @@ public class UserRegistry extends Verticle {
 
         EventBus eb = vertx.eventBus();
 
-        Handler<Message> myHandler = new Handler<Message>() {
-            public void handle(Message message) {
+        Handler<Message<JsonObject>> myHandler = new Handler<Message<JsonObject>>() {
+            public void handle(Message<JsonObject> message) {
                 System.out.println("I received a message " + message.body());
+                JsonObject saveMessage = new JsonObject();
+                saveMessage
+                    .putString("action", "save")
+                    .putString("collection", "user")
+                    .putObject("document", message.body());
+
+                eb.send("vertx.mongopersistor", saveMessage);
             }
         };
 
