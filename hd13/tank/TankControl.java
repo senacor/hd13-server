@@ -43,6 +43,9 @@ public class TankControl extends Verticle {
             @Override
             public void handle(AsyncResult<NetServer> voidAsyncResult) {
                 logger.info("Listen succeeded? " + voidAsyncResult.succeeded());
+                if (voidAsyncResult.succeeded()) {
+                    NetServer ns = voidAsyncResult.result();
+                }
             }
         });
     }
