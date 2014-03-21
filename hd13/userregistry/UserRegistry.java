@@ -28,7 +28,7 @@ public class UserRegistry extends Verticle {
 
         JsonObject config = new JsonObject();
         config.putString("host", host)
-                .putString("port", port)
+                .putNumber("port", Long.valueOf(port))
                 .putString("db_name", "server")
                 .putString("username", "admin")
                 .putString("password", "1Nq6LrahSJds");
