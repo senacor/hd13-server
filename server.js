@@ -5,3 +5,4 @@ var console = require('vertx/console');
 
 console.log("hello, this is the bootstrap verticle");
 container.deployVerticle('http.js');
+container.deployVerticle('hd13/userregistry/UserRegistry.java')
