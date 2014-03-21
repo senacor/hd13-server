@@ -1,5 +1,6 @@
-var vertx = require('vertx')
+var vertx = require('vertx');
 var container = require('vertx/container');
+var eventBus = vertx.eventBus;
 
 var console = require('vertx/console');
 
@@ -16,4 +17,5 @@ vertx.createHttpServer().requestHandler(function(req) {
 	console.log("req-path: "+req.path());
     var file = req.path() === '/' ? 'index.html' : req.path();
     req.response.sendFile('webroot/' + file);
-}).listen(port, ip)
+    eventBus.send("hd13.userregistry", "huhu");
+}).listen(port, ip);
