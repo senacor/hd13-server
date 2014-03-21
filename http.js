@@ -17,11 +17,11 @@ vertx.createHttpServer().requestHandler(function(req) {
 	console.log("req-path: "+req.path());
 
     var reqInfo = {
-      "timestamp":Math.round(+new Date()/1000),
+      "event-type":"http-access",
       "ip":req.remoteAddress().getAddress().getHostAddress(),
       "url":req.path()
     };
-    eventBus.send("hd13.userregistry", reqInfo);
+    eventBus.send("hd13.eventlogger", reqInfo);
 
     var file = req.path() === '/' ? 'index.html' : req.path();
     req.response.sendFile('webroot/' + file);
