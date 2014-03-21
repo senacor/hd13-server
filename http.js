@@ -1,4 +1,4 @@
-var vertx = require('vertx')
+//var vertx = require('vertx')
 var container = require('vertx/container');
 
 var console = require('vertx/console');
