@@ -44,7 +44,7 @@ public class UserRegistry extends Verticle {
                 JsonObject saveMessage = new JsonObject();
                 saveMessage
                     .putString("action", "save")
-                    .putString("collection", "user")
+                    .putString("collection", "access")
                     .putObject("document", message.body());
 
                 eb.send("vertx.mongopersistor", saveMessage);
