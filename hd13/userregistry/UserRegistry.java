@@ -41,11 +41,12 @@ public class UserRegistry extends Verticle {
         Handler<Message<String>> myHandler = new Handler<Message<String>>() {
             public void handle(Message<String> message) {
                 System.out.println("I received a message " + message.body());
+                JsonObject userObject = new JsonObject().putString("username", message.body());
                 JsonObject saveMessage = new JsonObject();
                 saveMessage
                     .putString("action", "save")
                     .putString("collection", "user")
-                    .putString("docment", message.body());
+                    .putObject("document", userObject);
 
                 eb.send("vertx.mongopersistor", saveMessage);
             }
