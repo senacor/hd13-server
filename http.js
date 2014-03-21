@@ -17,7 +17,7 @@ vertx.createHttpServer().requestHandler(function(req) {
 	console.log("req-path: "+req.path());
 
     var reqInfo = {
-      "timestamp":"???",
+      "timestamp":Math.round(+new Date()/1000),
       "ip":req.remoteAddress().getAddress().getHostAddress(),
       "url":req.path()
     };
