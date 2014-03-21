@@ -25,5 +25,4 @@ vertx.createHttpServer().requestHandler(function(req) {
 
     var file = req.path() === '/' ? 'index.html' : req.path();
     req.response.sendFile('webroot/' + file);
-    eventBus.send("hd13.userregistry", "huhu");
 }).listen(port, ip);

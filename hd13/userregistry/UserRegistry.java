@@ -38,15 +38,14 @@ public class UserRegistry extends Verticle {
 
         EventBus eb = vertx.eventBus();
 
-        Handler<Message<String>> myHandler = new Handler<Message<String>>() {
-            public void handle(Message<String> message) {
+        Handler<Message<JsonObject>> myHandler = new Handler<Message<JsonObject>>() {
+            public void handle(Message<JsonObject> message) {
                 System.out.println("I received a message " + message.body());
-                JsonObject userObject = new JsonObject().putString("username", message.body());
                 JsonObject saveMessage = new JsonObject();
                 saveMessage
                     .putString("action", "save")
                     .putString("collection", "user")
-                    .putObject("document", userObject);
+                    .putObject("document", message.body());
 
                 eb.send("vertx.mongopersistor", saveMessage);
             }
