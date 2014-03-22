@@ -59,6 +59,7 @@ public class EventLogger extends Verticle {
                     .putObject("document", event);
 
                 eb.send("vertx.mongopersistor", saveMessage);
+                eb.publish("event.dashboard", event);
             }
         };
 
